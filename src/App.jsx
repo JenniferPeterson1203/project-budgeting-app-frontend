@@ -32,6 +32,7 @@ const App = () => {
           path="/"
           element={
             <TransactionIndex
+              setTransactions={setTransactions}
               transactions={transactions}
               humanReadableDate={humanReadableDate}
             />
@@ -40,11 +41,12 @@ const App = () => {
         <Route
           path="/transactions/:id"
           element={
-            <TransactionDetailsPage
-              transactions={transactions}
-              humanReadableDate={humanReadableDate}
-            />
+            <TransactionDetailsPage humanReadableDate={humanReadableDate} />
           }
+        ></Route>
+        <Route
+          path="/transactions/edit/:id"
+          element={<TransactionForm setTransactions={setTransactions} />}
         ></Route>
         <Route
           path="/transactions/new"
