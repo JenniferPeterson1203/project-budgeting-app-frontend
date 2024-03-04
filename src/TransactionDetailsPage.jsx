@@ -1,28 +1,35 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TransactionDetailsPage = ({ humanReadableDate }) => {
   // this is for accessing a particular transaction by the ID number
   const { id } = useParams();
   const [transaction, setTransaction] = useState();
+  const navigate = useNavigate();
+
+  // cancel button function
+  function handleHome() {
+    navigate("/");
+  }
 
   useEffect(() => {
     fetch(`http://localhost:4444/transactions/${id}`)
       .then((res) => res.json())
       .then((data) => setTransaction(data.transaction));
-  }, []);
-
-  // console.log(transaction.name);
+  }, [id]);
 
   if (!transaction) return null;
+  const { name, amount, category, from } = transaction;
   return (
     <div>
       <h2>Transaction Details</h2>
-      <p>Name: {transaction.name}</p>
-      <p>Amount: {transaction.amount}</p>
-      <p>Catehgory: {transaction.category}</p>
-      <p>From: {transaction.from}</p>
-      <p> Date: {humanReadableDate(transaction.date)}</p>
+      <p>Name: {name}</p>
+      <p>Amount: {amount}</p>
+      <p>Category: {category}</p>
+      <p>From: {from}</p>
+      <p> Date: {humanReadableDate(date)}</p>
+      <button onClick={() => navigate(`/transactions/edit/${id}`)}>Edit</button>
+      <button onClick={handleHome}>Home</button>
     </div>
   );
 };
