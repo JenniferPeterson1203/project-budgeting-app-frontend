@@ -1,20 +1,16 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import "./TransactionIndex.css";
-// import { useParams } from "react-router-dom";
+
 const TransactionIndex = ({
   transactions,
   setTransactions,
   humanReadableDate,
 }) => {
-  // const [totalBalance, setTotalBalance] = useState(0);
-
   // function for the total
   const total = transactions
     .map((transaction) => +transaction.amount)
     .reduce((acc, curr) => acc + curr, 0);
 
-  // const total = -90;
   let totalColor = "";
   if (total < 0) {
     totalColor = "red";
@@ -24,6 +20,7 @@ const TransactionIndex = ({
     totalColor = "yellow";
   }
 
+  // handle delete fx
   const handleDelete = (id) => {
     const options = {
       method: "DELETE",
@@ -44,7 +41,6 @@ const TransactionIndex = ({
         {transactions.map(({ id, date, name, amount }) => (
           <div className="card" key={id}>
             <p>{humanReadableDate(date)}</p>
-            {/* I think i can nest the item name between a link tag for the details page */}
             <Link to={`/transactions/${id}`}>
               <p>{name}</p>
             </Link>
