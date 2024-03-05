@@ -19,9 +19,10 @@ const TransactionDetailsPage = ({ humanReadableDate }) => {
   }, [id]);
 
   if (!transaction) return null;
-  const { name, amount, category, from } = transaction;
+
+  const { name, amount, category, from, date } = transaction;
   return (
-    <div>
+    <div className="details">
       <h2>Transaction Details</h2>
       <p>Name: {name}</p>
       <p>Amount: {amount}</p>

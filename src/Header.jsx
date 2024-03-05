@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-
+import "./Header.css";
 const Header = () => {
   const handleClick = () => {};
   return (
-    <div>
+    <div className="title-container">
       <header>
         <Link to={`/`}>
-          <h1>Budgeting App</h1>
+          <h1 className="title">Eazy Budgets</h1>
         </Link>
         <Link to={`/transactions/new`}>
-          <button onClick={handleClick}>New Transaction</button>
+          <button className="new-trans-btn" onClick={handleClick}>
+            New Transaction
+          </button>
         </Link>
       </header>
     </div>

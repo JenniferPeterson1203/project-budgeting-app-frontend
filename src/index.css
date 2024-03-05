@@ -3,3 +3,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+form,
+.details {
+  width: 100%;
+  padding: 0.3em;
+  margin: 1em 0em;
+  text-align: center;
+  border: 5px solid gray;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

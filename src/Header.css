@@ -1,0 +1,14 @@
+.title {
+  display: inline-block;
+  /* justify-items: end;
+   */
+  padding: 10px;
+  margin-right: 200px;
+}
+header {
+  background-color: rgb(122, 208, 122);
+  color: black;
+}
+Link {
+  text-decoration: none;
+}

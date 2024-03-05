@@ -11,13 +11,19 @@ const TransactionForm = ({ setTransactions }) => {
     category: "",
   });
 
-  function handleCancel() {
+  // function for the cancel button
+  const handleCancel = () => {
     navigate("/");
-  }
-  function handleChange(e) {
+  };
+  // function for the form input
+  const handleChange = (e) => {
     setTransaction({ ...transaction, [e.target.id]: e.target.value });
-  }
+  };
 
+  // function for the dropdown
+  const handleCategoryChange = (e) => {
+    setTransaction({ ...transaction, category: e.target.value });
+  };
   // handle submit function
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +33,7 @@ const TransactionForm = ({ setTransactions }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(transaction),
       };
-      console.log("test");
+
       fetch(`http://localhost:4444/transactions/${id}`, options)
         .then((res) => res.json())
         .then((data) => {
@@ -65,7 +71,7 @@ const TransactionForm = ({ setTransactions }) => {
         .then((data) => setTransaction(data.transaction));
     }
   }, [id]);
-
+  const categories = ["Income", "Savings", "Housing", "Food", "Misc"];
   return (
     <>
       <div>
@@ -115,19 +121,23 @@ const TransactionForm = ({ setTransactions }) => {
             value={transaction.from}
           />
         </label>
-        <label htmlFor="category">
-          Category:
-          <input
-            onChange={handleChange}
-            type="text"
-            id="category"
-            name="category"
-            value={transaction.category}
-          />
-        </label>
+
+        <label htmlFor="category">Category</label>
+        <select
+          id="category"
+          value={transaction.category}
+          onChange={handleCategoryChange}
+        >
+          <option>{""}</option>
+          {categories.map((ele, index) => (
+            <option key={index} value={ele}>
+              {ele}
+            </option>
+          ))}
+        </select>
         <button type="submit">Submit</button>
+        <button onClick={handleCancel}>Cancel</button>
       </form>
-      <button onClick={handleCancel}>Cancel</button>
     </>
   );
 };
