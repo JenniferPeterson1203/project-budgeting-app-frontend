@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./TransactionIndex.css";
+const API = import.meta.env.VITE_BASE_URL;
 
 const TransactionIndex = ({
   transactions,
@@ -25,7 +26,7 @@ const TransactionIndex = ({
     const options = {
       method: "DELETE",
     };
-    fetch(`http://localhost:4444/transactions/${id}`, options)
+    fetch(`${API}/transactions/${id}`, options)
       .then((res) => res.json())
       .then((data) => setTransactions(data.transactions));
   };

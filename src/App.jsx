@@ -5,12 +5,13 @@ import { Route, Routes } from "react-router-dom";
 import TransactionForm from "./TransactionForm";
 import TransactionIndex from "./TransactionIndex";
 import TransactionDetailsPage from "./TransactionDetailsPage";
+const API = import.meta.env.VITE_BASE_URL;
 const App = () => {
   const [transactions, setTransactions] = useState([]);
 
   // useEffect for the fecth call
   useEffect(() => {
-    fetch("http://localhost:4444/transactions")
+    fetch(`${API}/transactions`)
       .then((res) => res.json())
       .then((data) => setTransactions(data.transactions));
   }, []);

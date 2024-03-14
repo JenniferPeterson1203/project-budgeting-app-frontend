@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+const API = import.meta.env.VITE_BASE_URL;
 
 const TransactionDetailsPage = ({ humanReadableDate }) => {
   // this is for accessing a particular transaction by the ID number
@@ -13,7 +14,7 @@ const TransactionDetailsPage = ({ humanReadableDate }) => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:4444/transactions/${id}`)
+    fetch(`${API}transactions/${id}`)
       .then((res) => res.json())
       .then((data) => setTransaction(data.transaction));
   }, [id]);

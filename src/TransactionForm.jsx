@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+const API = import.meta.env.VITE_BASE_URL;
 const TransactionForm = ({ setTransactions }) => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const TransactionForm = ({ setTransactions }) => {
         body: JSON.stringify(transaction),
       };
 
-      fetch(`http://localhost:4444/transactions/${id}`, options)
+      fetch(`${API}/transactions/${id}`, options)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
